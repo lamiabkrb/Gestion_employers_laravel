@@ -20,8 +20,9 @@ Route::middleware('auth')->group(function(){
     Route::prefix('employers')->group(function(){
         Route::get('/',[EmployeController::class, 'index'])->name('employer.index');
         Route::get('/create',[EmployeController::class, 'create'])->name('employer.create');
-        Route::get('/edit/{employer}',[EmployeController::class],'edit')->name('employer.edit');   // avec param lemployé a modifier 
-        
+        Route::get('/edit/{employer}',[EmployeController::class,'edit'])->name('employer.edit');   // avec param lemployé a modifier 
+        Route::post('/store',[EmployeController::class, 'store'])->name('employer.store');
+
     });
 
      //Toutes les routes de ce groupe doivent commencer par /departement dans l’URL
@@ -29,8 +30,11 @@ Route::middleware('auth')->group(function(){
         Route::get('/',[DepartementController::class, 'index'])->name('departement.index');
         Route::get('/create',[DepartementController::class, 'create'])->name('departement.create');
         Route::post('/create',[DepartementController::class, 'store'])->name('departement.store');
-        Route::get('/edit/{departement}',[DepartementController::class],'edit')->name('departement.edit');   // avec param lemployé a modifier 
-        
+        Route::get('/edit/{departement}',[DepartementController::class,'edit'])->name('departement.edit');   // avec param departement a modifier
+        Route::put('/update/{departement}',[DepartementController::class,'update'])->name('departement.update');   // avec param departement a modifier
+        Route::get('/{departement}',[DepartementController::class,'delete'])->name('departement.delete');   // avec param departement a modifier
+
+
     });
 
 

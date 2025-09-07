@@ -31,7 +31,7 @@ class SavedepartementRequest extends FormRequest
     {
         return[
             'name.required'=>'Le nom de departement est obligatoire',
-            'name.unqiue'=>'Le nom du departement existe deja '
+            'name.unique'=>'Le nom du departement existe deja '
 
          ];
     } 

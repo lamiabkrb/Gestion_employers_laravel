@@ -13,14 +13,19 @@
 		                <div class="app-card app-card-settings shadow-sm p-4">
 						    
 						    <div class="app-card-body">
-							    <form class="settings-form" method="POST">
+							    <form class="settings-form" method="POST" action="{{route('employer.store')}}">
                                     @csrf
                                     @method("POST")
 
                                     <div class="mb-3">
-									    <label for="setting-input-2" class="form-label">Departement</label>
+									    <label for="setting-input-2" class="form-label">Département</label>
                                         <select name="departement_id" id="departement_id" class="form-control" >
-                                            <option value=""></option>
+                                            <option value="">
+												Selectionner le departement
+												@foreach ($departements as $departement)
+													<option value="{{$departement->id}}">{{$departement->name}}</option>
+												@endforeach
+											</option>
                                         </select>									
                                     </div>
                                
@@ -30,7 +35,7 @@
 												<path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
 												<circle cx="8" cy="4.5" r="1"/>
 												</svg></span></label>
-									    <input type="text" class="form-control" id="setting-input-1" placeholder="Entrer le nom de l'employer" name="firt_name" required>
+									    <input type="text" class="form-control" id="setting-input-1" placeholder="Entrer le nom de l'employer" name="first_name" required>
 									</div>
 									<div class="mb-3">
 									    <label for="setting-input-2" class="form-label">Prenom</label>
@@ -43,6 +48,10 @@
                                     <div class="mb-3">
 									    <label for="setting-input-3" class="form-label">Contact</label>
 									    <input type="text" class="form-control" id="setting-input-3" placeholder="Entrer le contact" name="phone">
+									</div>
+									<div class="mb-3">
+									    <label for="setting-input-3" class="form-label">Montant Journalier</label>
+									    <input type="number" class="form-control" id="setting-input-3" placeholder="Entrer le montant journalier" name="montant_journalier">
 									</div>
 									<button type="submit" class="btn app-btn-primary" >Enregistrer</button>
 							    </form>
