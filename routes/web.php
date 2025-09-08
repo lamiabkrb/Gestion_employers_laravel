@@ -18,10 +18,12 @@ Route::middleware('auth')->group(function(){
 
  //Toutes les routes de ce groupe doivent commencer par /employers dans l’URL
     Route::prefix('employers')->group(function(){
-        Route::get('/',[EmployeController::class, 'index'])->name('employer.index');
-        Route::get('/create',[EmployeController::class, 'create'])->name('employer.create');
-        Route::get('/edit/{employer}',[EmployeController::class,'edit'])->name('employer.edit');   // avec param lemployé a modifier 
-        Route::post('/store',[EmployeController::class, 'store'])->name('employer.store');
+        Route::get('/',[EmployeController::class, 'index'])->name('employer.index'); // afficher la liste des employer 
+        Route::get('/create',[EmployeController::class, 'create'])->name('employer.create'); // afficher le formulaire de creation 
+        Route::get('/edit/{employer}',[EmployeController::class,'edit'])->name('employer.edit');   // AFFICHER le formulaire de modification avec param lemployé a modifier 
+        Route::post('/store',[EmployeController::class, 'store'])->name('employer.store');  // CREATION DUN EMPLOYER
+        Route::put('/update/{employer}',[EmployeController::class,'update'])->name('employer.update');   // avec param employé a modifier
+        Route::get('/{employer}',[EmployeController::class,'delete'])->name('employer.delete');   // avec param departement a modifier
 
     });
 
