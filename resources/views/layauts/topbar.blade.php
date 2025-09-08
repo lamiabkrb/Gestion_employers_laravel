@@ -115,17 +115,18 @@
                                     <path fill-rule="evenodd" d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z"/>
                                 </svg>
 					        </a>
-					    </div><!--//app-utility-item-->
+					    </div><!--//app-utility-item--> 
 			            
 			            <div class="app-utility-item app-user-dropdown dropdown">
-				            <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="assets/images/user.png" alt="user profile"></a>
+				            <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+								<img src="https://ui-avatars.com/api/?name={{ auth()->user()->name }}&background=51B37F&color=fff" alt="user profile" style="border-radius:50%;"></a>
 				            <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
 								<li><a class="dropdown-item" href="account.html">Account</a></li>
 								<li><a class="dropdown-item" href="settings.html">Settings</a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="login.html">Log Out</a></li>
 							</ul>
-			            </div><!--//app-user-dropdown--> 
+			            </div><!--//app-user-dropdown-->  
 		            </div><!--//app-utilities-->
 		        </div><!--//row-->
 	            </div><!--//app-header-content-->
