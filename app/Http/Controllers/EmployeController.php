@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class EmployeController extends Controller
 {
     public function index(){
-        $employers = Employé::with('departement')->paginate(10);//departement
+        $employers = Employé::with('departement')->paginate(10); //departement est le nom de la fonction de relation qui dit :"Un employé appartient à un département"
       return view('employers.index', compact('employers'));
     }
 

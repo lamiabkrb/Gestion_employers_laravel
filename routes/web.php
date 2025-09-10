@@ -5,6 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\EmployeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ConfigurationController;
+use League\Config\ConfigurationInterface;
+use PSpell\Config;
 
 Route::get('/',[AuthController::class, 'login'])->name('login');
 
@@ -35,9 +38,14 @@ Route::middleware('auth')->group(function(){
         Route::get('/edit/{departement}',[DepartementController::class,'edit'])->name('departement.edit');   // avec param departement a modifier
         Route::put('/update/{departement}',[DepartementController::class,'update'])->name('departement.update');   // avec param departement a modifier
         Route::get('/{departement}',[DepartementController::class,'delete'])->name('departement.delete');   // avec param departement a modifier
-
-
     });
 
+      //Toutes les routes de ce groupe doivent commencer par /configurations dans l’URL
+    Route::prefix('configurations')->group(function(){
+        Route::get('/',[ConfigurationController::class, 'index'])->name('configuration.index');
+        Route::get('/create',[ConfigurationController::class, 'create'])->name('configuration.create');
+        Route::post('/create',[ConfigurationController::class, 'store'])->name('configuration.store');
+        Route::get('/{configuration}',[ConfigurationController::class,'delete'])->name('configuration.delete');   // avec param departement a modifier
 
+    });
 });
