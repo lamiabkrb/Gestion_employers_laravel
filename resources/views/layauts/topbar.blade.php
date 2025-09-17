@@ -124,7 +124,12 @@
 								<li><a class="dropdown-item" href="account.html">Account</a></li>
 								<li><a class="dropdown-item" href="settings.html">Settings</a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="login.html">Log Out</a></li>
+								<li>
+									<form action="{{ route('logout') }}" method="POST">
+										@csrf
+										<button type="submit" class="dropdown-item">Log Out</button>
+									</form>
+								</li>
 							</ul>
 			            </div><!--//app-user-dropdown-->  
 		            </div><!--//app-utilities-->

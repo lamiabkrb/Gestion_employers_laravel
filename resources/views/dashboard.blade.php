@@ -3,6 +3,12 @@
 @section('content')
   <h1 class="app-page-title">Dashboard</h1>
 
+  <div class="row mt-2 mb-2 p-2">
+     @if ($paiementnotification)   {{--on doit utiliser le if pour verifier son existance car on l'a initialiser avec null --}}
+		<div class="alert alert-warning"><b>Attention: </b>{{ $paiementnotification }}</div>
+	@endif
+  </div>
+
   <!--ligne des statistiques-->
   <div class="row g-4 mb-4">   
 		 <div class="col-6 col-lg-3">   {{-- Total Département --}}

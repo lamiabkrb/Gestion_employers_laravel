@@ -56,8 +56,30 @@
                                             @forelse ($allconfigurations as $configuration)
                                                 <tr>
                                                     <td class="cell">{{ $configuration->id }}</td>
-                                                    <td class="cell"><span class="truncate">{{ $configuration->type }}</span></td>
-                                                    <td class="cell"><span class="truncate">{{ $configuration->value }}</span></td>
+                                                    <td class="cell"><span class="truncate">
+														@switch($configuration->type)
+															@case('APP_NAME')
+																Nom de l'application
+																@break
+
+															@case('PAIEMENT_DATE')
+																Date mensuel deùaiement
+																@break
+
+															@case('DEVELOPPER_NAME')
+																Equipe de developpement 
+																@break
+
+															@default
+																Autre Configuration 
+														@endswitch
+
+													</span></td>
+                                                    <td class="cell"><span class="truncate">{{ $configuration->value }}
+														@if ($configuration->type == 'PAIEMENT_DATE')
+															de chaque mois
+														@endif
+													</span></td>
 													<td><a href="#" class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#deleteconfig{{$configuration->id}}"> Retirer </a></td>
                                                 </tr>
 

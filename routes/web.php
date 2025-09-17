@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartementController;
@@ -13,6 +14,12 @@ Route::get('/',[AuthController::class, 'login'])->name('login');
 
 Route::post('/',[AuthController::class, 'handlelogin'])
     ->name('handlelogin');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+ 
+Route::get('/validate-account/{email}',[AdminController::class,'defineAccess']);
+
+Route::post('/validate-account',[AdminController::class,'SubmitDefineAccess'])->name('submitdefineaccess');   
 
 
  //route sécurisée par lauthentification si un user nest ps connecté il ne pourra pas acceder 
@@ -45,7 +52,21 @@ Route::middleware('auth')->group(function(){
         Route::get('/',[ConfigurationController::class, 'index'])->name('configuration.index');
         Route::get('/create',[ConfigurationController::class, 'create'])->name('configuration.create');
         Route::post('/create',[ConfigurationController::class, 'store'])->name('configuration.store');
-        Route::get('/{configuration}',[ConfigurationController::class,'delete'])->name('configuration.delete');   // avec param departement a modifier
+        Route::get('/{configuration}',[ConfigurationController::class,'delete'])->name('configuration.delete');   
 
     });
+
+    //Toutes les routes de ce groupe doivent commencer par /administrateurs dans l’URL
+    Route::prefix('administrateurs')->group(function(){
+        Route::get('/',[AdminController::class, 'index'])->name('administrateur.index');
+        Route::get('/create',[AdminController::class, 'create'])->name('administrateur.create');
+        Route::get('/edit/{administrateur}',[AdminController::class, 'edit'])->name('administrateur.edit');
+        Route::post('/create',[AdminController::class, 'store'])->name('administrateur.store');
+        Route::put('/update/{administrateur}',[AdminController::class, 'update'])->name('administrateur.update');
+        Route::get('/{administrateur}',[AdminController::class,'delete'])->name('administrateur.delete');   
+       
+    });
+
+     
+
 });
